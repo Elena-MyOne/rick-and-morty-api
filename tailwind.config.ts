@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        custom: ['integralcf', 'sans-serif'],
+        custom: ['Roboto', 'sans-serif'],
       },
       screens: {
         xsm: { max: '500px' },
