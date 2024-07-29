@@ -6,11 +6,11 @@ interface CharacterCardProps {
 }
 
 export default function CharacterCard({ character }: CharacterCardProps) {
-  const { name, id, image, gender, species, status } = character;
+  const { name, id, image, gender, species } = character;
   return (
     <Link
       to={`/details/${id}`}
-      className="bg-gray-50 hover:shadow-lg cursor-pointer duration-300 shadow-md border"
+      className="bg-gray-50 hover:shadow-lg cursor-pointer duration-300 shadow-md border w-[300px]"
       data-testid="card"
     >
       <figure className=" flex items-center justify-center w-[300px] h-[300px]">
@@ -20,7 +20,6 @@ export default function CharacterCard({ character }: CharacterCardProps) {
         <h2 className="text-center font-bold pb-2">{name}</h2>
         <p>Gender: {gender}</p>
         <p>Species: {species}</p>
-        <p>Status: {status}</p>
       </div>
     </Link>
   );

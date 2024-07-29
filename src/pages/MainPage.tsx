@@ -12,6 +12,7 @@ import {
 import Loader from '../components/Loader';
 import CharacterCard from '../components/CharacterCard';
 import Pagination from '../components/Pagination';
+import { Outlet } from 'react-router-dom';
 
 export default function MainPage() {
   const dispatch = useDispatch<AppDispatch>();
@@ -43,11 +44,17 @@ export default function MainPage() {
           {isFetchingList && <Loader />}
           {!isFetchingList && (
             <>
-              <div className="grid grid-cols-4 grid-rows-2 gap-6 py-4 grow">
-                {characters.map((character) => (
-                  <CharacterCard key={character.id} character={character} />
-                ))}
+              <div className="flex gap-6">
+                <div className="flex flex-wrap gap-6 py-4 grow">
+                  {characters.map((character) => (
+                    <CharacterCard key={character.id} character={character} />
+                  ))}
+                </div>
+                <div>
+                  <Outlet />
+                </div>
               </div>
+
               {pages > 0 && <Pagination />}
             </>
           )}

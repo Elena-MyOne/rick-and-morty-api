@@ -1,5 +1,6 @@
+import { CharacterData } from './../../types/CharacterData';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { CharactersData } from '../../types/CharactersData';
+import { CharactersData, CharacterData } from '../../types/CharactersData';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
@@ -8,7 +9,10 @@ export const apiSlice = createApi({
     getCharactersList: builder.query<CharactersData, { page: number }>({
       query: ({ page }) => `character?page=${page}`,
     }),
+    getCharacterById: builder.query<CharacterData, string>({
+      query: (id) => `character/${id}`,
+    }),
   }),
 });
 
-export const { useGetCharactersListQuery } = apiSlice;
+export const { useGetCharactersListQuery, useGetCharacterByIdQuery } = apiSlice;
