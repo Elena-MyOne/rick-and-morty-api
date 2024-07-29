@@ -10,13 +10,13 @@ export default function CharacterCard({ character }: CharacterCardProps) {
   return (
     <Link
       to={`/details/${id}`}
-      className="bg-gray-50 p-4 hover:shadow-lg cursor-pointer duration-300 shadow-md border"
+      className="bg-gray-50 hover:shadow-lg cursor-pointer duration-300 shadow-md border"
       data-testid="card"
     >
-      <figure className=" flex items-center justify-center">
+      <figure className=" flex items-center justify-center w-[300px] h-[300px]">
         <img src={image} alt={`pokemon ${name} image`} />
       </figure>
-      <div className="items-center">
+      <div className="items-center p-4 ">
         <h2 className="text-center font-bold pb-2">{name}</h2>
         <p>Gender: {gender}</p>
         <p>Species: {species}</p>
