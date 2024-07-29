@@ -10,3 +10,5 @@ export const apiSlice = createApi({
     }),
   }),
 });
+
+export const { useGetCharactersListQuery } = apiSlice;

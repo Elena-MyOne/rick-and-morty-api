@@ -26,10 +26,16 @@ const charactersSlice = createSlice({
     setCharacters(state, action: PayloadAction<CharacterData[]>) {
       state.characters = action.payload;
     },
+    setPages(state, action: PayloadAction<number>) {
+      state.pages = action.payload;
+    },
+    setCurrentPage(state, action: PayloadAction<number>) {
+      state.currentPage = action.payload;
+    },
   },
 });
 
 export const selectCharacters = (state: RootState): CharactersState => state.characters;
 
-export const { setSavedValue, setCharacters } = charactersSlice.actions;
+export const { setSavedValue, setCharacters, setPages, setCurrentPage } = charactersSlice.actions;
 export default charactersSlice.reducer;
