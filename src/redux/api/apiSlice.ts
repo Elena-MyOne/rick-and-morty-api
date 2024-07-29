@@ -1,6 +1,6 @@
 import { CharacterData } from './../../types/CharacterData';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { CharactersData, CharacterData } from '../../types/CharactersData';
+import { CharactersData } from '../../types/CharactersData';
 
 export const apiSlice = createApi({
   reducerPath: 'api',

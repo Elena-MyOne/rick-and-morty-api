@@ -12,11 +12,13 @@ import {
 import Loader from '../components/Loader';
 import CharacterCard from '../components/CharacterCard';
 import Pagination from '../components/Pagination';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
 
 export default function MainPage() {
   const dispatch = useDispatch<AppDispatch>();
   const { characters, pages, currentPage } = useSelector(selectCharacters);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
 
   const {
     data: charactersList,
@@ -32,6 +34,21 @@ export default function MainPage() {
       dispatch(setPrevPage(charactersList.info.prev));
     }
   }, [charactersList, dispatch]);
+
+  useEffect(() => {
+    if (location.pathname === '/details' || location.pathname.startsWith('/details/')) {
+      if (searchParams.has('page')) {
+        searchParams.delete('page');
+        setSearchParams(searchParams);
+      }
+    } else {
+      const page = searchParams.get('page');
+      if (!page || page !== `${currentPage}`) {
+        searchParams.set('page', `${currentPage}`);
+        setSearchParams(searchParams);
+      }
+    }
+  }, [currentPage, location, searchParams, setSearchParams]);
 
   return (
     <>

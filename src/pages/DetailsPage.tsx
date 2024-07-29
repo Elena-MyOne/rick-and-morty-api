@@ -17,7 +17,7 @@ export default function DetailsPage() {
   return (
     <div className="w-full my-12 text-center bg-gray-100">
       {isFetching ? (
-        <div className="w-full">
+        <div className="w-[300px] h-[520px]">
           <Loader />
         </div>
       ) : (
