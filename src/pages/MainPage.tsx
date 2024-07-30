@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetCharactersListQuery } from '../redux/api/apiSlice';
 import { AppDispatch } from '../redux/store';
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
   selectCharacters,
   setCharacters,
@@ -16,15 +16,23 @@ import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
 
 export default function MainPage() {
   const dispatch = useDispatch<AppDispatch>();
-  const { characters, pages, currentPage } = useSelector(selectCharacters);
+  const { characters, pages, currentPage, savedValue } = useSelector(selectCharacters);
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
+  const [searchQuery, setSearchQuery] = useState(searchParams.get('name') || '');
+
+  console.log(searchParams);
+  console.log('savedValue', savedValue);
+
+  useEffect(() => {
+    setSearchQuery(searchParams.get('name') || '');
+  }, [searchParams]);
 
   const {
     data: charactersList,
     isFetching: isFetchingList,
     isError: isErrorList,
-  } = useGetCharactersListQuery({ page: currentPage });
+  } = useGetCharactersListQuery({ name: searchQuery, page: currentPage });
 
   useEffect(() => {
     if (charactersList) {
@@ -35,20 +43,33 @@ export default function MainPage() {
     }
   }, [charactersList, dispatch]);
 
-  useEffect(() => {
-    if (location.pathname === '/details' || location.pathname.startsWith('/details/')) {
+  const updateSearchParams = useCallback(() => {
+    const isDetailsPage =
+      location.pathname === '/details' || location.pathname.startsWith('/details/');
+
+    let needsUpdate = false;
+
+    if (isDetailsPage) {
       if (searchParams.has('page')) {
         searchParams.delete('page');
-        setSearchParams(searchParams);
+        needsUpdate = true;
       }
     } else {
       const page = searchParams.get('page');
       if (!page || page !== `${currentPage}`) {
         searchParams.set('page', `${currentPage}`);
-        setSearchParams(searchParams);
+        needsUpdate = true;
       }
     }
+
+    if (needsUpdate) {
+      setSearchParams(searchParams);
+    }
   }, [currentPage, location, searchParams, setSearchParams]);
+
+  useEffect(() => {
+    updateSearchParams();
+  }, [currentPage, location, searchParams, updateSearchParams]);
 
   return (
     <>

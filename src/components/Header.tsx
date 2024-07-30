@@ -2,12 +2,16 @@ import { useDispatch } from 'react-redux';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { AppDispatch } from '../redux/store';
 import { useEffect } from 'react';
-import { setSavedValue } from '../redux/slices/charactersSlice';
+import { setCurrentPage, setSavedValue } from '../redux/slices/charactersSlice';
 import { CiSearch } from 'react-icons/ci';
+import { useSearchParams } from 'react-router-dom';
 
 export default function Header() {
   const [savedLSValue, setSavedLSValue] = useLocalStorage('rickAndMortyCo');
   const dispatch = useDispatch<AppDispatch>();
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  // const searchQuery = searchParams.get('name') || '';
 
   useEffect(() => {
     setSavedLSValue(savedLSValue);
@@ -19,8 +23,10 @@ export default function Header() {
   }
 
   function handleSearchButton(): void {
-    setSavedLSValue(savedLSValue);
     dispatch(setSavedValue(savedLSValue));
+    searchParams.set('name', savedLSValue);
+    setSearchParams(searchParams);
+    dispatch(setCurrentPage(1));
   }
 
   function handleSearchForm(event: React.FormEvent) {
