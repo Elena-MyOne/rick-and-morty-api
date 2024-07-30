@@ -11,11 +11,12 @@ export default function Header() {
   const dispatch = useDispatch<AppDispatch>();
 
   const [searchParams, setSearchParams] = useSearchParams();
-  // const searchQuery = searchParams.get('name') || '';
 
   useEffect(() => {
     setSavedLSValue(savedLSValue);
-  }, [savedLSValue, setSavedLSValue]);
+    searchParams.set('name', savedLSValue);
+    setSearchParams(searchParams);
+  }, [savedLSValue, searchParams, setSavedLSValue, setSearchParams]);
 
   function handleChange(event: React.FormEvent<HTMLInputElement>): void {
     const target = event.currentTarget.value;
@@ -24,8 +25,6 @@ export default function Header() {
 
   function handleSearchButton(): void {
     dispatch(setSavedValue(savedLSValue));
-    searchParams.set('name', savedLSValue);
-    setSearchParams(searchParams);
     dispatch(setCurrentPage(1));
   }
 

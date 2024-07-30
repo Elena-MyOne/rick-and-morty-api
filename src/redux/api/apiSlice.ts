@@ -12,8 +12,8 @@ export const apiSlice = createApi({
         if (page) {
           queryString = `character?page=${page}`;
         }
-        if (name) {
-          queryString = `character?name=${name}`;
+        if (name && page) {
+          queryString = `character?page=${page}&name=${name}`;
         }
         return queryString;
       },

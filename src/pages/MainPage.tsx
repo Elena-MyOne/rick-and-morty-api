@@ -92,7 +92,6 @@ export default function MainPage() {
                   <Outlet />
                 </div>
               </div>
-
               {pages > 0 && <Pagination />}
             </>
           )}
