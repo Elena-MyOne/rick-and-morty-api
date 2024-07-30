@@ -16,13 +16,10 @@ import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
 
 export default function MainPage() {
   const dispatch = useDispatch<AppDispatch>();
-  const { characters, pages, currentPage, savedValue } = useSelector(selectCharacters);
+  const { characters, pages, currentPage } = useSelector(selectCharacters);
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
   const [searchQuery, setSearchQuery] = useState(searchParams.get('name') || '');
-
-  console.log(searchParams);
-  console.log('savedValue', savedValue);
 
   useEffect(() => {
     setSearchQuery(searchParams.get('name') || '');

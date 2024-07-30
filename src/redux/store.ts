@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { apiSlice } from './api/apiSlice';
 import charactersSlice from './slices/charactersSlice';
+import selectedItemsSlice from './slices/selectedItemsSlice';
 
 export const store = configureStore({
   reducer: {
     characters: charactersSlice,
+    selectedItems: selectedItemsSlice,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
