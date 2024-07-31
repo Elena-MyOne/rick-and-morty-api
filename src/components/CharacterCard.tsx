@@ -28,7 +28,7 @@ export default function CharacterCard({ character }: CharacterCardProps) {
       data-testid="card"
     >
       <figure className=" flex items-center justify-center w-[299px] h-[299px]">
-        <img src={image} alt={`pokemon ${name} image`} />
+        <img src={image} alt={`character ${name} image`} />
       </figure>
       <div className="items-center p-4 ">
         <h2 className="text-center font-bold pb-2">{name}</h2>
@@ -46,6 +46,7 @@ export default function CharacterCard({ character }: CharacterCardProps) {
       <button
         className={`${selectedItems.some((item) => item.id === character.id) ? 'text-green-400 hover:text-green-500' : 'text-gray-700 hover:text-green-400'} absolute top-0 right-0 bg-white -700 p-2 text-xl duration-300 `}
         onClick={() => handleSelectedItem(character)}
+        data-testid="icon"
       >
         <IoHeart />
       </button>

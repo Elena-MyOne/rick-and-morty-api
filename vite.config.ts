@@ -8,6 +8,9 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./src/setupTests.ts'],
+    coverage: {
+      exclude: ['./postcss.config.js', './.eslintrc.cjs', './vite.config.ts'],
+    },
   },
   base: './',
 });

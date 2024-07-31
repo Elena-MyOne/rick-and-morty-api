@@ -5,7 +5,7 @@ export default function ThemesSelection() {
   const { theme, setTheme } = useContext(ThemeContext);
 
   return (
-    <div className="flex gap-4 justify-end">
+    <div className={`${theme === 'dark' ? 'text-gray-50' : 'text-black'} flex gap-4 justify-end`}>
       <div className="">Themes:</div>
       <label>
         Light{' '}

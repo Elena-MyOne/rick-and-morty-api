@@ -25,9 +25,9 @@ export default function DetailsPage() {
           {character && (
             <div className="shadow-md border ">
               <figure className=" flex items-center justify-center w-[300px] h-[300px]">
-                <img src={character.image} alt={`pokemon ${character.image} image`} />
+                <img src={character.image} alt={`character ${character.image} image`} />
               </figure>
-              <div className="py-4 font-bold pb-2">{character.name}</div>
+              <h3 className="py-4 font-bold pb-2">{character.name}</h3>
               <p>Gender: {character.gender}</p>
               <p>Species: {character.species}</p>
               <p>Status: {character.status}</p>
