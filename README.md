@@ -1,3 +1,5 @@
+![rick-and-morty-api-2](https://github.com/user-attachments/assets/b89d3ec0-6b54-410a-9e03-556554f09984)
+
 # Rick and Morty API
 
 ## Overview
@@ -13,6 +15,9 @@ This project is a web application that interacts with the [Rick and Morty API](h
 - **Dark Mode** – Toggle between light and dark themes.
 - **Error Boundary** – Ensures a smooth user experience by handling unexpected errors gracefully.
 - **Tests** - tests coverage up to 90%.
+
+  ![rick-and-morty-api](https://github.com/user-attachments/assets/67acc642-7485-4a21-bf77-7fba265515a9)
+
 
 ## Technologies Used
 
