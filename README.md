@@ -30,8 +30,21 @@ This project is a web application that interacts with the [Rick and Morty API](h
    git clone https://github.com/Elena-MyOne/rick-and-morty-api.git
    ```
 2. Navigate to the project directory:
+
    ```sh
    cd rick-and-morty-api
+   ```
+
+3. Set up packages:
+
+   ```sh
+   npm i
+   ```
+
+4. Run the project:
+
+   ```sh
+   npm start
    ```
 
 ## How to Use
